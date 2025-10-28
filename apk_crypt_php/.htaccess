@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Security
+Options -Indexes
+<Files "*.db">
+    Deny from all
+</Files>
+
+# API Rewrites
+RewriteRule ^api/(.*)$ api/$1 [L]
+
+# Clean URLs  
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
